@@ -1,8 +1,8 @@
 const fs = require('fs');
 
-function createDir(directoryPath: string) {
+function createDir(dir: string) {
   try {
-    fs.mkdirSync(directoryPath, { recursive: true });
+    fs.mkdirSync(dir, { recursive: true });
   } catch (err) {
     console.error('An error has occurred: ', err);
   }
@@ -11,18 +11,44 @@ function createDir(directoryPath: string) {
 function createConfigFile(dir: string, template: string, file: string) {
   const templatesPath = `${process.cwd()}/src/templates/${template}`;
   try {
-    const prettierConfig = fs.readFileSync(templatesPath, 'utf8');
+    const templateConfig = fs.readFileSync(templatesPath, 'utf8');
 
-    fs.writeFileSync(`${dir}/${file}`, prettierConfig);
+    fs.writeFileSync(`${dir}/${file}`, templateConfig);
   } catch (error) {
     console.error('an error has occured ', error);
   }
 }
 
+function createAllConfigs(dir: string, templates: string) {
+  try {
+    const templateFiles = fs.readdirSync(templates);
+
+    templateFiles.forEach(function(templateFile) {
+      const fileName = templateFile.replace('.txt', '');
+      const srcFileName = 'index';
+
+      if (!fileName.includes(srcFileName)) {
+        createConfigFile(dir, templateFile, fileName);
+      }
+    });
+  } catch (error) {
+    console.error('an error has occured ', error);
+  }
+}
+
+function createSrc(dir: string) {
+  const srcDir = `${dir}/src`;
+
+  createDir(srcDir);
+  createConfigFile(dir, `index.ts.txt`, '/src/index.ts');
+  createConfigFile(dir, `index.test.ts.txt`, '/src/index.test.ts');
+}
+
 (function main(directoryPath: string) {
   const newDirectory = `${process.cwd()}/${directoryPath}`;
+  const templates = `${process.cwd()}/src/templates`;
 
   createDir(newDirectory);
-  createConfigFile(newDirectory, 'prettier.txt', '.prettierrc');
-  createConfigFile(newDirectory, 'jest-config.txt', 'jest.config.js');
+  createSrc(newDirectory);
+  createAllConfigs(newDirectory, templates);
 })('test');
