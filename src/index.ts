@@ -8,12 +8,12 @@ function createDir(directoryPath: string) {
   }
 }
 
-function createPrettierConfig(dir: string) {
-  const templatesPath = `${process.cwd()}/src/templates/prettier.txt`;
+function createConfigFile(dir: string, template: string, file: string) {
+  const templatesPath = `${process.cwd()}/src/templates/${template}`;
   try {
     const prettierConfig = fs.readFileSync(templatesPath, 'utf8');
 
-    fs.writeFileSync(`${dir}/.prettierrc`, prettierConfig);
+    fs.writeFileSync(`${dir}/${file}`, prettierConfig);
   } catch (error) {
     console.error('an error has occured ', error);
   }
@@ -23,5 +23,6 @@ function createPrettierConfig(dir: string) {
   const newDirectory = `${process.cwd()}/${directoryPath}`;
 
   createDir(newDirectory);
-  createPrettierConfig(newDirectory);
+  createConfigFile(newDirectory, 'prettier.txt', '.prettierrc');
+  createConfigFile(newDirectory, 'jest-config.txt', 'jest.config.js');
 })('test');
