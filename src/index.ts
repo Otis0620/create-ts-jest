@@ -1,13 +1,19 @@
 const fs = require('fs');
 
-function createDir(dir: string) {
+/**
+ * Create a directory with a specific name.
+ */
+function createDir(directoryName: string) {
   try {
-    fs.mkdirSync(dir, { recursive: true });
+    fs.mkdirSync(directoryName, { recursive: true });
   } catch (err) {
     console.error('An error has occurred: ', err);
   }
 }
 
+/**
+ * Create a configuration file using a specific template.
+ */
 function createConfigFile(dir: string, template: string, file: string) {
   const templatesPath = `${process.cwd()}/src/templates/${template}`;
   try {
@@ -19,6 +25,9 @@ function createConfigFile(dir: string, template: string, file: string) {
   }
 }
 
+/**
+ * Loop over all configuration files in the templates directory and create them.
+ */
 function createAllConfigs(dir: string, templates: string) {
   try {
     const templateFiles = fs.readdirSync(templates);
@@ -36,6 +45,9 @@ function createAllConfigs(dir: string, templates: string) {
   }
 }
 
+/**
+ * Create the src file where the main index.ts and index.test.ts files live.
+ */
 function createSrc(dir: string) {
   const srcDir = `${dir}/src`;
 
@@ -44,6 +56,9 @@ function createSrc(dir: string) {
   createConfigFile(dir, `index.test.ts.txt`, '/src/index.test.ts');
 }
 
+/**
+ * Main method for running all the code.
+ */
 (function main(directoryPath: string) {
   const newDirectory = `${process.cwd()}/${directoryPath}`;
   const templates = `${process.cwd()}/src/templates`;
