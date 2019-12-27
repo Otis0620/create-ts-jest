@@ -1,25 +1,4 @@
-import { readdirSync } from 'fs';
-import { createDirectory, createConfigFile } from '@helpers/index';
-
-/**
- * Loop over all configuration files in the templates directory and create them.
- */
-function createAllConfigs(dir: string, templates: string) {
-  try {
-    const templateFiles = readdirSync(templates);
-
-    templateFiles.forEach(function(templateFile) {
-      const fileName = templateFile.replace('.txt', '');
-      const srcFileName = 'index';
-
-      if (!fileName.includes(srcFileName)) {
-        createConfigFile(dir, templateFile, fileName);
-      }
-    });
-  } catch (error) {
-    console.error('an error has occured ', error);
-  }
-}
+import { createAllConfigs, createDirectory, createConfigFile } from '@helpers/index';
 
 /**
  * Create the src file where the main index.ts and index.test.ts files live.
