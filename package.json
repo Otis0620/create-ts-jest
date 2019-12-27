@@ -6,6 +6,7 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "postinstall": "link-module-alias",
+    "create-files": "node dist/index.js",
     "unit": "jest"
   },
   "keywords": [],
@@ -29,6 +30,7 @@
   },
   "_moduleAliasIgnoreWarning": true,
   "_moduleAliases": {
-    "@": "src"
+    "@": "dist",
+    "@helpers": "dist/helpers"
   }
 }
