@@ -1,20 +1,5 @@
-import { readFileSync, writeFileSync, readdirSync } from 'fs';
-import { createDirectory } from '@helpers/create-directory';
-
-/**
- * Create a configuration file using a specific template.
- */
-function createConfigFile(dir: string, template: string, file: string) {
-  const templatesPath = `${process.cwd()}/src/templates/${template}`;
-
-  try {
-    const templateConfig = readFileSync(templatesPath, 'utf8');
-
-    writeFileSync(`${dir}/${file}`, templateConfig);
-  } catch (error) {
-    console.error('an error has occured ', error);
-  }
-}
+import { readdirSync } from 'fs';
+import { createDirectory, createConfigFile } from '@helpers/index';
 
 /**
  * Loop over all configuration files in the templates directory and create them.
