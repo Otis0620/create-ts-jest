@@ -1,25 +1,16 @@
-const fs = require('fs');
-
-/**
- * Create a directory with a specific name.
- */
-function createDir(directoryName: string) {
-  try {
-    fs.mkdirSync(directoryName, { recursive: true });
-  } catch (err) {
-    console.error('An error has occurred: ', err);
-  }
-}
+import { readFileSync, writeFileSync, readdirSync } from 'fs';
+import { createDirectory } from '@helpers/create-directory';
 
 /**
  * Create a configuration file using a specific template.
  */
 function createConfigFile(dir: string, template: string, file: string) {
   const templatesPath = `${process.cwd()}/src/templates/${template}`;
-  try {
-    const templateConfig = fs.readFileSync(templatesPath, 'utf8');
 
-    fs.writeFileSync(`${dir}/${file}`, templateConfig);
+  try {
+    const templateConfig = readFileSync(templatesPath, 'utf8');
+
+    writeFileSync(`${dir}/${file}`, templateConfig);
   } catch (error) {
     console.error('an error has occured ', error);
   }
@@ -30,7 +21,7 @@ function createConfigFile(dir: string, template: string, file: string) {
  */
 function createAllConfigs(dir: string, templates: string) {
   try {
-    const templateFiles = fs.readdirSync(templates);
+    const templateFiles = readdirSync(templates);
 
     templateFiles.forEach(function(templateFile) {
       const fileName = templateFile.replace('.txt', '');
@@ -51,7 +42,7 @@ function createAllConfigs(dir: string, templates: string) {
 function createSrc(dir: string) {
   const srcDir = `${dir}/src`;
 
-  createDir(srcDir);
+  createDirectory(srcDir);
   createConfigFile(dir, `index.ts.txt`, '/src/index.ts');
   createConfigFile(dir, `index.test.ts.txt`, '/src/index.test.ts');
 }
@@ -63,7 +54,7 @@ function createSrc(dir: string) {
   const newDirectory = `${process.cwd()}/${directoryPath}`;
   const templates = `${process.cwd()}/src/templates`;
 
-  createDir(newDirectory);
+  createDirectory(newDirectory);
   createSrc(newDirectory);
   createAllConfigs(newDirectory, templates);
 })('test');
