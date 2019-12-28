@@ -1,11 +1,10 @@
 {
-  "name": "create-ts-jest",
+  "name": "",
   "version": "1.0.0",
-  "description": "A simple generator for creating projects using TypeScript and Jest",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "postinstall": "link-module-alias",
     "unit": "jest"
   },
   "keywords": [],
@@ -22,14 +21,5 @@
     "ts-jest": "^24.2.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.3"
-  },
-  "dependencies": {
-    "link-module-alias": "^1.2.0",
-    "module-alias": "^2.2.2"
-  },
-   "_moduleAliasIgnoreWarning": true,
-  "_moduleAliases": {
-    "@": "dist",
-    "@helpers": "dist/helpers"
   }
 }

@@ -1,3 +1,4 @@
+import { execSync } from 'child_process';
 import { createAllConfigs, createDirectory, createSrc } from '@helpers/index';
 
 /**
@@ -17,4 +18,6 @@ import { createAllConfigs, createDirectory, createSrc } from '@helpers/index';
   createDirectory(newDirectory);
   createSrc(newDirectory);
   createAllConfigs(newDirectory, templates);
+
+  execSync(`cd ${projectName} && npm install`, { stdio: [0, 1, 2] });
 })();
