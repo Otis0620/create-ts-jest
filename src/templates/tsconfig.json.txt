@@ -8,7 +8,9 @@
     "baseUrl": ".",
     "paths": {
       "*": ["node_modules/"],
-      "typings/*": ["src/typings/*"]
+      "typings/*": ["src/typings/*"],
+      "@/*": ["src/*"],
+      "@helpers/*": ["src/helpers/*"]
     }
   },
   "include": ["src/**/*.ts"],

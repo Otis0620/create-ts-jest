@@ -27,8 +27,9 @@
     "link-module-alias": "^1.2.0",
     "module-alias": "^2.2.2"
   },
-  "_moduleAliasIgnoreWarning": true,
+   "_moduleAliasIgnoreWarning": true,
   "_moduleAliases": {
-    "@": "src"
+    "@": "dist",
+    "@helpers": "dist/helpers"
   }
 }
