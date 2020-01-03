@@ -1,15 +1,18 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { writeFileSync } from 'fs';
+import { templates } from '../templates';
 
 /**
  * Create a configuration file using a specific template.
  */
-export function createConfigFile(dir: string, template: string, file: string) {
-  const templatesPath = `${process.cwd()}/src/templates/${template}`;
-
+export function createConfigFile(dir: string) {
   try {
-    const templateConfig = readFileSync(templatesPath, 'utf8');
-
-    writeFileSync(`${dir}/${file}`, templateConfig);
+    templates.forEach(({ fileName, contents, exports }) => {
+      let fileContents = JSON.stringify(contents, undefined, 2);
+      if (exports) {
+        fileContents = 'module.exports = ' + JSON.stringify(contents, undefined, 2);
+      }
+      writeFileSync(`${dir}/${fileName}`, fileContents);
+    });
   } catch (error) {
     console.error('an error has occured ', error);
   }

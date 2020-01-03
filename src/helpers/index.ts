@@ -1,6 +1,6 @@
-import { createAllConfigs } from '@helpers/create-all-configs';
-import { createConfigFile } from '@helpers/create-config-file';
-import { createDirectory } from '@helpers/create-directory';
-import { createSrc } from '@helpers/create-src';
+// import { createAllConfigs } from './create-all-configs';
+import { createConfigFile } from './create-config-file';
+import { createDirectory } from './create-directory';
+import { createSrc } from './create-src';
 
-export { createAllConfigs, createConfigFile, createDirectory, createSrc };
+export { createConfigFile, createDirectory, createSrc };

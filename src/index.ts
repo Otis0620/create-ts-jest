@@ -1,5 +1,9 @@
+#!/usr/bin/env node
 import { execSync } from 'child_process';
-import { createAllConfigs, createDirectory, createSrc } from '@helpers/index';
+import { join } from 'path';
+import { createDirectory, createSrc, createConfigFile } from './helpers';
+import { templates } from './templates';
+import { readFileSync, writeFileSync } from 'fs';
 
 /**
  * Main method for running all the code.
@@ -13,11 +17,7 @@ import { createAllConfigs, createDirectory, createSrc } from '@helpers/index';
   }
 
   const newDirectory = `${process.cwd()}/${projectName}`;
-  const templates = `${process.cwd()}/src/templates`;
-
   createDirectory(newDirectory);
-  createSrc(newDirectory);
-  createAllConfigs(newDirectory, templates);
-
-  execSync(`cd ${projectName} && npm install`, { stdio: [0, 1, 2] });
+  createConfigFile(newDirectory);
+  // execSync(`cd ${projectName} && npm install`, { stdio: [0, 1, 2] });
 })();
