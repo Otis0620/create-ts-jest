@@ -1,12 +1,12 @@
 import { writeFileSync } from 'fs';
-import { templates } from '../templates';
+import { templates } from '../templates/all-templates';
 
 /**
  * Create a configuration file using a specific template.
  */
-export function createConfigFile(dir: string) {
+export function createConfigFile() {
   try {
-    templates.forEach(({ fileName, contents, exports }) => {
+    templates.forEach(({ dir, fileName, contents, exports }) => {
       let fileContents = JSON.stringify(contents, undefined, 2);
 
       if (typeof contents === 'string') {
@@ -14,8 +14,9 @@ export function createConfigFile(dir: string) {
       }
 
       if (exports) {
-        fileContents = 'module.exports = ' + JSON.stringify(contents, undefined, 2);
+        fileContents = `module.exports = ${JSON.stringify(contents, undefined, 2)}`;
       }
+
       writeFileSync(`${dir}/${fileName}`, fileContents);
     });
   } catch (error) {

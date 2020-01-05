@@ -1,7 +1,9 @@
 import { gitIgnore, srcIndex, srcIndexTest } from './string-templates';
+import { projectPath, srcPath } from '../config';
 
 export const templates = [
   {
+    dir: projectPath,
     fileName: '.eslintrc',
     contents: {
       parser: '@typescript-eslint/parser',
@@ -13,6 +15,7 @@ export const templates = [
     exports: false,
   },
   {
+    dir: projectPath,
     fileName: '.prettierrc',
     contents: {
       semi: true,
@@ -24,6 +27,7 @@ export const templates = [
     exports: false,
   },
   {
+    dir: projectPath,
     fileName: 'jest.config.js',
     contents: {
       preset: 'ts-jest',
@@ -32,6 +36,7 @@ export const templates = [
     exports: true,
   },
   {
+    dir: projectPath,
     fileName: 'package.json',
     contents: {
       name: '',
@@ -61,6 +66,7 @@ export const templates = [
     exports: false,
   },
   {
+    dir: projectPath,
     fileName: 'tsconfig.json',
     contents: {
       compilerOptions: {
@@ -80,19 +86,7 @@ export const templates = [
     },
     exports: false,
   },
-  {
-    fileName: 'index.ts',
-    contents: srcIndex,
-    exports: false,
-  },
-  {
-    fileName: 'index.test.ts',
-    contents: srcIndexTest,
-    exports: false,
-  },
-  {
-    fileName: '.gitignore',
-    contents: gitIgnore,
-    exports: false,
-  },
+  { dir: srcPath, fileName: 'index.ts', contents: srcIndex, exports: false },
+  { dir: srcPath, fileName: 'index.test.ts', contents: srcIndexTest, exports: false },
+  { dir: projectPath, fileName: '.gitignore', contents: gitIgnore, exports: false },
 ];
