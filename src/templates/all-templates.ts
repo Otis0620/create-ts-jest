@@ -1,5 +1,5 @@
 import { gitIgnore, srcIndex, srcIndexTest } from './string-templates';
-import { projectPath, srcPath } from '../config';
+import { projectName, projectPath, srcPath } from '../config';
 
 /**
  * All the templates and configuration options to be created for the project.
@@ -42,7 +42,7 @@ export const templates: { dir: string; fileName: string; contents: any; exports:
     dir: projectPath,
     fileName: 'package.json',
     contents: {
-      name: '',
+      name: projectName.toLowerCase(),
       version: '1.0.0',
       description: '',
       main: 'index.js',
