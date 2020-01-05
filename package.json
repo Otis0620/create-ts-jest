@@ -1,6 +1,6 @@
 {
   "name": "create-ts-jest",
-  "bin": "./dist/index.js",
+  "bin": "./index.js",
   "version": "1.0.0",
   "description": "A simple generator for creating projects using TypeScript and Jest",
   "main": "index.js",

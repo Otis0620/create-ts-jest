@@ -1,2 +1,5 @@
+config.js
+index.js
 node_modules
-dist
+helpers
+templates
