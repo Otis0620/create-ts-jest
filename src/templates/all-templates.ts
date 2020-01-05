@@ -1,7 +1,10 @@
 import { gitIgnore, srcIndex, srcIndexTest } from './string-templates';
 import { projectPath, srcPath } from '../config';
 
-export const templates = [
+/**
+ * All the templates and configuration options to be created for the project.
+ */
+export const templates: { dir: string; fileName: string; contents: any; exports: boolean }[] = [
   {
     dir: projectPath,
     fileName: '.eslintrc',

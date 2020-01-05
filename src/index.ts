@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import { execSync } from 'child_process';
 import { createConfigFile } from './helpers/create-config-file';
 import { createDirectory } from './helpers/create-directory';

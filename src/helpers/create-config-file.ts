@@ -7,17 +7,15 @@ import { templates } from '../templates/all-templates';
 export function createConfigFile() {
   try {
     templates.forEach(({ dir, fileName, contents, exports }) => {
-      let fileContents = JSON.stringify(contents, undefined, 2);
-
       if (typeof contents === 'string') {
-        fileContents = contents;
-      }
+        writeFileSync(`${dir}/${fileName}`, contents);
+      } else if (exports) {
+        const exportedContents = `module.exports = ${JSON.stringify(contents, undefined, 2)}`;
 
-      if (exports) {
-        fileContents = `module.exports = ${JSON.stringify(contents, undefined, 2)}`;
+        writeFileSync(`${dir}/${fileName}`, exportedContents);
+      } else {
+        writeFileSync(`${dir}/${fileName}`, JSON.stringify(contents, undefined, 2));
       }
-
-      writeFileSync(`${dir}/${fileName}`, fileContents);
     });
   } catch (error) {
     console.error('an error has occured ', error);
