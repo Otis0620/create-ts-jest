@@ -6,15 +6,17 @@ import { templates } from '../templates/all-templates';
  */
 export function createConfigFile() {
   try {
-    templates.forEach(({ dir, fileName, contents, exports }) => {
+    templates.forEach(({ dir, contents, exports, fileName }) => {
+      const projectPath = `${dir}/${fileName}`;
+
       if (typeof contents === 'string') {
-        writeFileSync(`${dir}/${fileName}`, contents);
+        writeFileSync(projectPath, contents);
       } else if (exports) {
         const exportedContents = `module.exports = ${JSON.stringify(contents, undefined, 2)}`;
 
-        writeFileSync(`${dir}/${fileName}`, exportedContents);
+        writeFileSync(projectPath, exportedContents);
       } else {
-        writeFileSync(`${dir}/${fileName}`, JSON.stringify(contents, undefined, 2));
+        writeFileSync(projectPath, JSON.stringify(contents, undefined, 2));
       }
     });
   } catch (error) {
