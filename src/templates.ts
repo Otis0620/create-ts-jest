@@ -1,3 +1,5 @@
+import { gitIgnore, srcIndex, srcIndexTest } from './string-templates';
+
 export const templates = [
   {
     fileName: '.eslintrc',
@@ -80,28 +82,17 @@ export const templates = [
   },
   {
     fileName: 'index.ts',
-    contents: `export function helloWorld(): string {
-      return 'hello world'
-    };`,
+    contents: srcIndex,
     exports: false,
   },
   {
     fileName: 'index.test.ts',
-    contents: `
-    import { helloWorld } from '@/index';
-
-    describe('helloWorld', () => {
-      it('should return hello world', () => {
-        expect(helloWorld('world')).toEqual('hello world');
-      });
-    });`,
+    contents: srcIndexTest,
     exports: false,
   },
   {
     fileName: '.gitignore',
-    contents: `
-    node_modules
-    dist`,
+    contents: gitIgnore,
     exports: false,
   },
 ];

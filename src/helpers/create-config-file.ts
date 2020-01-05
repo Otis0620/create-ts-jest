@@ -8,6 +8,11 @@ export function createConfigFile(dir: string) {
   try {
     templates.forEach(({ fileName, contents, exports }) => {
       let fileContents = JSON.stringify(contents, undefined, 2);
+
+      if (typeof contents === 'string') {
+        fileContents = contents;
+      }
+
       if (exports) {
         fileContents = 'module.exports = ' + JSON.stringify(contents, undefined, 2);
       }
