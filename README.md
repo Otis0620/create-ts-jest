@@ -41,11 +41,11 @@ $ npm link
 ```
 
 ```bash
-create-ts-jest <ProjectName>
+$ create-ts-jest <ProjectName>
 ```
 
 Unlink project
 
 ```bash
-npm unlink
+$ npm unlink
 ```
