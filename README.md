@@ -18,30 +18,17 @@ $ git clone git@github.com:Otis0620/create-ts-jest.git
 
 ```bash
 $ npm install
+$ cd <location/of/create-ts-jest>/src
+$ tsc
 ```
 
-```bash
-$ tsc <location/of/create-ts-jest>
-```
-
-```bash
-$ node <location/of/create-ts-jest/dist/index.js
-```
-
-### Development
-
-Test the command locally using npm
+### Create New Project
 
 ```bash
 $ cd <location/of/create-ts-jest>
-```
-
-```bash
 $ npm link
-```
-
-```bash
-$ create-ts-jest <ProjectName>
+$ cd <location/where/new/project/should/live>
+$ npx create-ts-jest <project-name>
 ```
 
 Unlink project
