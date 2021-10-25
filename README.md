@@ -24,6 +24,15 @@ $ tsc
 
 ### Create New Project
 
+#### Using Node
+
+```bash
+$ cd <location/where/new/project/should/live>
+$ node <location/of/create-ts-jest>/index.js
+```
+
+#### Using Symlink
+
 ```bash
 $ cd <location/of/create-ts-jest>
 $ npm link
@@ -34,5 +43,6 @@ $ npx create-ts-jest <project-name>
 Unlink project
 
 ```bash
+$ cd <location/of/create-ts-jest>
 $ npm unlink
 ```
